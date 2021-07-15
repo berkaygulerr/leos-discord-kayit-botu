@@ -90,7 +90,7 @@ module.exports = {
           .setDescription(
             "`" +
               guildProfile.prefix +
-              "kayit cinsiyet(erkek, kız) @kullanıcı isim`"
+              "kayit cinsiyet(erkek, kız) @kullanıcı isim yaş`"
           )
           .setColor("BLUE");
         return message.channel.send(embed);
@@ -246,7 +246,7 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
         .setTitle("Doğru kullanım şu şekildedir:")
         .setThumbnail(client.user.displayAvatarURL())
-        .setDescription("`" + guildProfile.prefix + "kayit @kullanıcı isim`")
+        .setDescription("`" + guildProfile.prefix + "kayit @kullanıcı isim yaş`")
         .setColor("BLUE");
       if (args.length < 2) {
         return message.channel.send(embed);
