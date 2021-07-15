@@ -57,4 +57,4 @@ Sunucunuza yeni bir üye katıldığında aşağıda bulunan fotoğraftaki gibi,
 ![Hosgeldin Resim](images/hosgeldin.png)
 
 # **Geliştirici**
-## Berkay GÜLER
+Berkay GÜLER
