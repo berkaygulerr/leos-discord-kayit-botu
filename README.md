@@ -1,5 +1,5 @@
 # Leos Discord Kayıt Botu
-### Discord sunucunuzda yeni gelen üyelerinizi, güvenli bir şekilde Leos Bot arayıcılığı ile kayıt edin.
+## Discord sunucunuzda yeni gelen üyelerinizi, güvenli bir şekilde Leos Bot arayıcılığı ile kayıt edin.
 ![Leos Resim](images/leos.png)
 
 # **Nedir Bu Leos Kayıt Botu? Neden Sunucuma Eklemeliyim?**
