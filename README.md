@@ -41,7 +41,9 @@ Kurulum işlemini başarılı bir şekilde tamamladıktan sonra aşağıda bulun
 # **Kayıt Sistemi Nasıl Çalışır? / Kullanılır?**
 Eğer cinsiyete göre kayıt yapmak istemiyorsanız aşağıda bulunan komutu kullanarak yeni üyenizi başarılı bir şekilde kayıt edebilirsiniz (Unutmayın sadece kurulum esnasında ayarlamış olduğunuz kayıt edebilecek yetki rolüne sahip üyeler kayıt yapabilir).
 
-```!kayit @kullanıcı isim yaş```
+```
+!kayit @kullanıcı isim yaş
+```
 
 Eğer cinsiyete göre kayıt yapmak istiyorsanız aşağıda bulunan komutu kullanarak yeni üyenizi başarılı bir şekilde kayıt edebilirsiniz (Unutmayın sadece kurulum esnasında ayarlamış olduğunuz kayıt edebilecek yetki rolüne sahip üyeler kayıt yapabilir).
 
