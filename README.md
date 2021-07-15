@@ -1,8 +1,8 @@
-<h1 align="center">Welcome to readmei 👋</h1>
+<h1 align="center">Leos Discord Kurulum Botuna Hoş Geldiniz 👋</h1>
 <p>
 </p>
 
-> Sunucunuzda güvenli bir şekilde yeni gelen kullanıcılarınızı Leos bot ile kayıt edin.
+> Discord sunucunuzda, güvenli bir şekilde yeni gelen kullanıcılarınızı Leos bot ile kayıt edin.
 
 ## Author
 
