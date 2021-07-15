@@ -8,10 +8,10 @@ Gün geçtikçe Discord yeni kullanıcılar kazanmaya devam ediyor. Bu kullanıc
 [Şimdi Sunucunuza Ekleyin](https://discord.com/api/oauth2/authorize?client_id=859748867490971698&permissions=8&scope=bot)
 
 # **Dikkat!**
-Leos Bot'u sunucunuza eklediğiniz an Sunucu Ayarları kısmından Leos Bot'unun rolünü en üst rol olarak ayarlamayı unutmayın!
+> Leos Bot'u sunucunuza eklediğiniz an Sunucu Ayarları kısmından Leos Bot'unun rolünü en üst rol olarak ayarlamayı unutmayın!
 
 # **Kurulum**
-> Leos Bot'u sunucunuza eklediğinizde ilk yapacağınız işlem kurulum işlemidir. Aşağıda bulunan komut ile rahatlıkla Leos Bot'u sunucunuza kurabilirsiniz. Unutmayın kurulum işlemini sadece sunucu sahibi yapabilir!
+Leos Bot'u sunucunuza eklediğinizde ilk yapacağınız işlem kurulum işlemidir. Aşağıda bulunan komut ile rahatlıkla Leos Bot'u sunucunuza kurabilirsiniz. Unutmayın kurulum işlemini sadece sunucu sahibi yapabilir!
 
 ```
 !kurulum
