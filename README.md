@@ -54,7 +54,7 @@ Eğer cinsiyete göre kayıt yapmak istiyorsanız aşağıda bulunan komutu kull
 ![Kayıt Resim](images/kayit.png)
 
 # **Hoşgeldin Bildirimi**
-Sunucunuza yeni bir üye katıldığında aşağıda bulunan fotoğraftaki gibi, kurulum işlemi aşamasında ayarladığınız Yeni Üye Bildirim Kanalı'nda yeni kullanıcının Discord'a katılım tarihine ve hesabın güvenilirliğine erişebilirsiniz (Discord'a 15 günden önce katılmış kullanıcıları şüpheli oalrak işaretler).
+Sunucunuza yeni bir üye katıldığında aşağıda bulunan fotoğraftaki gibi, kurulum işlemi aşamasında ayarladığınız Yeni Üye Bildirim Kanalı'nda yeni kullanıcının Discord'a katılım tarihine ve hesabın güvenilirliğine erişebilirsiniz (Discord'a 15 günden önce katılmış kullanıcıları şüpheli olarak işaretler).
 
 ![Hosgeldin Resim](images/hosgeldin.png)
 
