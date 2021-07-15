@@ -1,6 +1,6 @@
 # Leos Discord Kayıt Botu
 ## Discord sunucunuzda yeni gelen üyelerinizi, güvenli bir şekilde Leos Bot arayıcılığı ile kayıt edin.
-![Leos Resim](images/leos.png width="200")
+![Leos Resim](images/leos.png width=200)
 
 # **Nedir Bu Leos Kayıt Botu? Neden Sunucuma Eklemeliyim?**
 Gün geçtikçe Discord yeni kullanıcılar kazanmaya devam ediyor. Bu kullanıcılar dilediği gibi yeni sunucular açıp dilediği gibi arkadaşlarıyla sohbet edip oyun oynayabiliyorlar. Tabi bu oluşturulan sunucular bir topluluk haline gelebiliyor ve çok fazla üye barındırabiliyor. Fazla üye barındıran sunucuları yönetmek bir hayli zor, sunucu yetkililerine çok fazla iş düşüyor. Leos Bot sayesinde yeni gelen kullanıcıları sunucunuzda ağırlayabilir, güvenli bir şekilde kayıt edebilir ve düzen sıkıntısı çekmeden eğlenmelerine vesile olabilirsiniz.
@@ -13,7 +13,9 @@ Leos Bot'u sunucunuza eklediğiniz an Sunucu Ayarları kısmından Leos Bot'unun
 # **Kurulum**
 Leos Bot'u sunucunuza eklediğinizde ilk yapacağınız işlem kurulum işlemidir. Aşağıda bulunan komut ile rahatlıkla Leos Bot'u sunucunuza kurabilirsiniz. Unutmayın kurulum işlemini sadece sunucu sahibi yapabilir!
 
-```!kurulum```
+```
+!kurulum
+```
 ![Kurulum Resim](images/kurulum-1.png)
 
 # **Kurulum İşlemindeki Aşamalar**
@@ -30,7 +32,9 @@ Leos Bot'u sunucunuza eklediğinizde ilk yapacağınız işlem kurulum işlemidi
 # **Kurulum İşlemi Sonrası**
 Kurulum işlemini başarılı bir şekilde tamamladıktan sonra aşağıda bulunan komutu kullanarak sunucu özel bulunan son ayarlarınızı takip edebilir ve tüm sunucu özel ayarlamalarınızı tekrardan yapabilirsiniz.
 
-```!ayarlar```
+```
+!ayarlar
+```
 
 ![Ayarlar Resim](images/ayarlar.png)
 
@@ -41,7 +45,9 @@ Eğer cinsiyete göre kayıt yapmak istemiyorsanız aşağıda bulunan komutu ku
 
 Eğer cinsiyete göre kayıt yapmak istiyorsanız aşağıda bulunan komutu kullanarak yeni üyenizi başarılı bir şekilde kayıt edebilirsiniz (Unutmayın sadece kurulum esnasında ayarlamış olduğunuz kayıt edebilecek yetki rolüne sahip üyeler kayıt yapabilir).
 
-```!kayit cinsiyet(erkek, kız) @kullanıcı isim yaş```
+```
+!kayit cinsiyet(erkek, kız) @kullanıcı isim yaş
+```
 
 ![Kayıt Resim](images/kayit.png)
 
