@@ -1,6 +1,6 @@
 # Leos Discord Kayıt Botu
 ## Discord sunucunuzda yeni gelen üyelerinizi, güvenli bir şekilde Leos Bot arayıcılığı ile kayıt edin.
-![Leos Resim](images/leos.jpg)
+![Leos Resim](images/leos.png)
 
 # **Nedir Bu Leos Kayıt Botu? Neden Sunucuma Eklemeliyim?**
 Gün geçtikçe Discord yeni kullanıcılar kazanmaya devam ediyor. Bu kullanıcılar dilediği gibi yeni sunucular açıp dilediği gibi arkadaşlarıyla sohbet edip oyun oynayabiliyorlar. Tabi bu oluşturulan sunucular bir topluluk haline gelebiliyor ve çok fazla üye barındırabiliyor. Fazla üye barındıran sunucuları yönetmek bir hayli zor, sunucu yetkililerine çok fazla iş düşüyor. Leos Bot sayesinde yeni gelen kullanıcıları sunucunuzda ağırlayabilir, güvenli bir şekilde kayıt edebilir ve düzen sıkıntısı çekmeden eğlenmelerine vesile olabilirsiniz.
