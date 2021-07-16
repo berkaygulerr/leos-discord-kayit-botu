@@ -49,10 +49,7 @@ module.exports = {
         (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
       );
 
-    if (
-      commandName === "kurulum" &&
-      message.author.id !== message.guild.ownerID
-    ) {
+    if (commandName === "kurulum") {
       setup = true;
       setupState = states.ayarlar_yetki;
     }
@@ -69,13 +66,11 @@ module.exports = {
       (setup && commandName !== "kurulum" && message.mentions.roles) ||
       (setup && commandName !== "kurulum" && message.mentions.channels)
     ) {
-      var messageHasOwner = message.author.id !== message.guild.ownerID;
-
       var roleIDs = [];
       var roleMentions = [];
       var roles = "";
 
-      if (message.content.toLowerCase() === "iptal" && messageHasOwner) {
+      if (message.content.toLowerCase() === "iptal") {
         let embed = new Discord.MessageEmbed()
           .setTitle("Kurulum İptal Edilmiştir")
           .addField(
@@ -104,11 +99,7 @@ module.exports = {
         roles = `<@&${role.id}>`;
       }
 
-      if (
-        setupState === states.ayarlar_yetki &&
-        roles != "" &&
-        messageHasOwner
-      ) {
+      if (setupState === states.ayarlar_yetki && roles != "") {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { settingsRoleIDs: roleIDs, lastEdited: Date.now() }
@@ -131,11 +122,7 @@ module.exports = {
         setupState = states.kayit_yetki;
 
         return message.channel.send(embed);
-      } else if (
-        setupState === states.kayit_yetki &&
-        roles != "" &&
-        messageHasOwner
-      ) {
+      } else if (setupState === states.kayit_yetki && roles != "") {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { registerRoleIDs: roleIDs, lastEdited: Date.now() }
@@ -158,9 +145,7 @@ module.exports = {
         return message.channel.send(embed);
       } else if (
         setupState === states.kayit_sembol &&
-        ["h", "hayir", "hayır"].includes(
-          message.content.toLowerCase() && messageHasOwner
-        )
+        ["h", "hayir", "hayır"].includes(message.content.toLowerCase())
       ) {
         let embed = new Discord.MessageEmbed()
           .setTitle("İsim Yaş Arasına Eklenecek Bir Sembol Ayarlanmadı")
@@ -181,9 +166,7 @@ module.exports = {
         return message.channel.send(embed);
       } else if (
         setupState === states.kayit_sembol &&
-        !["h", "hayir", "hayır"].includes(
-          message.content.toLowerCase() && messageHasOwner
-        )
+        !["h", "hayir", "hayır"].includes(message.content.toLowerCase())
       ) {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
@@ -207,11 +190,7 @@ module.exports = {
         setupState = states.kayitsiz_rol;
 
         return message.channel.send(embed);
-      } else if (
-        setupState === states.kayitsiz_rol &&
-        roles != "" &&
-        messageHasOwner
-      ) {
+      } else if (setupState === states.kayitsiz_rol && roles != "") {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { memberRoleID: role.id, lastEdited: Date.now() }
@@ -232,11 +211,7 @@ module.exports = {
         setupState = states.kayitli_rol;
 
         return message.channel.send(embed);
-      } else if (
-        setupState === states.kayitli_rol &&
-        roles != "" &&
-        messageHasOwner
-      ) {
+      } else if (setupState === states.kayitli_rol && roles != "") {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { registeredRoleID: role.id, lastEdited: Date.now() }
@@ -264,11 +239,7 @@ module.exports = {
         setupState = states.kayit_kanal;
 
         return message.channel.send(embed);
-      } else if (
-        setupState === states.kayit_kanal &&
-        channel &&
-        messageHasOwner
-      ) {
+      } else if (setupState === states.kayit_kanal && channel) {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { registerChannelID: channel.id, lastEdited: Date.now() }
@@ -289,11 +260,7 @@ module.exports = {
         setupState = states.yeni_uye_kanal;
 
         return message.channel.send(embed);
-      } else if (
-        setupState === states.yeni_uye_kanal &&
-        channel &&
-        messageHasOwner
-      ) {
+      } else if (setupState === states.yeni_uye_kanal && channel) {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { welcomeChannelID: channel.id, lastEdited: Date.now() }
@@ -316,9 +283,7 @@ module.exports = {
         return message.channel.send(embed);
       } else if (
         setupState === states.cinsiyet_kayit &&
-        ["h", "hayır", "hayir"].includes(
-          message.content.toLowerCase() && messageHasOwner
-        )
+        ["h", "hayır", "hayir"].includes(message.content.toLowerCase())
       ) {
         let embed = new Discord.MessageEmbed()
           .setTitle("Cinsiyet Sistemi Aktifleştirilmedi")
@@ -336,7 +301,7 @@ module.exports = {
         return message.channel.send(embed);
       } else if (
         setupState === states.cinsiyet_kayit &&
-        ["e", "evet"].includes(message.content.toLowerCase() && messageHasOwner)
+        ["e", "evet"].includes(message.content.toLowerCase())
       ) {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
@@ -365,11 +330,7 @@ module.exports = {
         setupState = states.erkek_rol;
 
         return message.channel.send(embed);
-      } else if (
-        setupState === states.erkek_rol &&
-        roles != "" &&
-        messageHasOwner
-      ) {
+      } else if (setupState === states.erkek_rol && roles != "") {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { boyRoleID: role.id, lastEdited: Date.now() }
@@ -397,11 +358,7 @@ module.exports = {
         setupState = states.kiz_rol;
 
         return message.channel.send(embed);
-      } else if (
-        setupState === states.kiz_rol &&
-        roles != "" &&
-        messageHasOwner
-      ) {
+      } else if (setupState === states.kiz_rol && roles != "") {
         await Guild.findOneAndUpdate(
           { guildID: message.guild.id },
           { girlRoleID: role.id, lastEdited: Date.now() }
