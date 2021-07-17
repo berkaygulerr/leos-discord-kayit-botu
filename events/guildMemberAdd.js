@@ -47,8 +47,7 @@ module.exports = {
             value:
               Date.now() - member.user.createdAt < 1000 * 60 * 60 * 24 * 15
                 ? "`Şüpheli! (Hesap sadece" +
-                  Date.now() -
-                  member.user.createdAt +
+                  (Date.now() - member.user.createdAt) / 1000 / 60 / 60 / 24 +
                   " gün önce açılmış!)`"
                 : "`Güvenilir!`",
           }
