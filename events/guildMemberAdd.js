@@ -27,11 +27,11 @@ module.exports = {
 
       var embed = new Discord.MessageEmbed()
         .setTitle(
-          `${member.user.username} aramıza hoş geldin, seni burada görmek ne güzel :partying_face:`
+          `${member.user.username} Aramıza Hoş Geldin, Seni Burada Görmek Ne Güzel :partying_face:`
         )
         .setThumbnail(member.user.displayAvatarURL())
         .setDescription(
-          `<@${member.user.id}> hoş geldin, seninle birlikte artık ${member.guild.memberCount} kişiyiz!`
+          `<@${member.user.id}> Hoş geldin, seninle birlikte artık ${member.guild.memberCount} kişiyiz!`
         )
         .addFields(
           {
@@ -42,6 +42,7 @@ module.exports = {
               `${date.toLocaleString("tr-TR")}` +
               "`",
           },
+          { name: "ID:", value: member.user.id },
           {
             name: "Hesap güvenilirliği:",
             value:
