@@ -11,6 +11,7 @@ const guildSchema = new mongoose.Schema({
   registeredRoleID: { type: String, required: false },
   registerChannelID: { type: String, required: false },
   registerSymbole: { type: String, required: false },
+  registrationAmounts: { type: Array, required: false },
   welcomeChannelID: { type: String, required: false },
   genderRole: { type: Boolean, default: false },
   girlRoleID: { type: String, required: false },

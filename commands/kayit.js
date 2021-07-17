@@ -149,6 +149,8 @@ module.exports = {
             );
           }
         });
+
+        registeredMemberRoles.push(`<@&${registeredRole.id}>`);
       }
       if (["erkek", "e"].includes(args[0])) {
         await registeredMember.roles.add(boyRole).catch((x) => {
@@ -158,6 +160,8 @@ module.exports = {
             );
           }
         });
+
+        registeredMemberRoles.push(`<@&${boyRole.id}>`);
       } else if (["kız", "kiz", "k"].includes(args[0])) {
         await registeredMember.roles.add(girlRole).catch((x) => {
           if (x.message.includes("Missing")) {
@@ -166,6 +170,8 @@ module.exports = {
             );
           }
         });
+
+        registeredMemberRoles.push(`<@&${girlRole.id}>`);
       }
 
       await registeredMember.setNickname(memberName).catch((x) => {
@@ -176,13 +182,44 @@ module.exports = {
 
       await registeredMember.roles.remove(guildProfile.memberRoleID);
 
-      registeredMember.roles.cache.map(async (role) => {
-        if (role.name !== "@everyone")
-          registeredMemberRoles.push(`<@&${role.id}>`);
-      });
-
       let roles = registeredMemberRoles.join(", ");
       if (roles === "") return;
+
+      var registrationAmounts = await guildProfile.registrationAmounts;
+
+      var hasRegistrant = registrationAmounts.some(
+        (registrant) => registrant.id === message.author.id
+      );
+
+      if (!hasRegistrant) {
+        let registrant = { id: message.author.id, count: 1 };
+
+        await Guild.findOneAndUpdate(
+          { guildID: message.guild.id },
+          {
+            registrationAmounts: [...registrationAmounts, registrant],
+            lastEdited: Date.now(),
+          }
+        );
+      } else {
+        let registrants = [...registrationAmounts];
+
+        registrants.map((registrant) =>
+          registrant.id === message.author.id ? (registrant.count += 1) : null
+        );
+
+        await Guild.findOneAndUpdate(
+          { guildID: message.guild.id },
+          {
+            registrationAmounts: registrants,
+            lastEdited: Date.now(),
+          }
+        );
+      }
+
+      let registrant = registrationAmounts.filter(
+        (registrant) => registrant.id === message.author.id
+      )[0];
 
       var registeredEmbed = new Discord.MessageEmbed()
         .setAuthor("Kayıt başarıyla yapıldı", client.user.displayAvatarURL())
@@ -198,7 +235,11 @@ module.exports = {
           },
           {
             name: "Kaydı Yapan Yetkili:",
-            value: message.author,
+            value:
+              `<@${message.author.id}>` +
+              "\n`" +
+              `${registrant.count}` +
+              ". kayıt`",
             inline: true,
           },
           {
@@ -213,7 +254,7 @@ module.exports = {
 
       if (!registerChannel) return message.channel.send(registeredEmbed);
 
-      registerChannel.send(registeredEmbed);
+      return registerChannel.send(registeredEmbed);
     } else if (gendersCommands.includes(args[0])) {
       let embed = new Discord.MessageEmbed()
         .setTitle("Cinsiyet Kayıt Sistemi Devre Dışı Durumda!")
@@ -246,7 +287,9 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
         .setTitle("Doğru kullanım şu şekildedir:")
         .setThumbnail(client.user.displayAvatarURL())
-        .setDescription("`" + guildProfile.prefix + "kayit @kullanıcı isim yaş`")
+        .setDescription(
+          "`" + guildProfile.prefix + "kayit @kullanıcı isim yaş`"
+        )
         .setColor("BLUE");
       if (args.length < 2) {
         return message.channel.send(embed);
@@ -289,13 +332,44 @@ module.exports = {
 
       await registeredMember.roles.remove(guildProfile.memberRoleID);
 
-      registeredMember.roles.cache.map(async (role) => {
-        if (role.name !== "@everyone")
-          registeredMemberRoles.push(`<@&${role.id}>`);
-      });
-
-      let roles = registeredMemberRoles.join(", ");
+      let roles = `<@&${registeredRole.id}>`;
       if (roles === "") return;
+
+      var registrationAmounts = await guildProfile.registrationAmounts;
+
+      var hasRegistrant = registrationAmounts.some(
+        (registrant) => registrant.id === message.author.id
+      );
+
+      if (!hasRegistrant) {
+        let registrant = { id: message.author.id, count: 1 };
+
+        await Guild.findOneAndUpdate(
+          { guildID: message.guild.id },
+          {
+            registrationAmounts: [...registrationAmounts, registrant],
+            lastEdited: Date.now(),
+          }
+        );
+      } else {
+        let registrants = [...registrationAmounts];
+
+        registrants.map((registrant) =>
+          registrant.id === message.author.id ? (registrant.count += 1) : null
+        );
+
+        await Guild.findOneAndUpdate(
+          { guildID: message.guild.id },
+          {
+            registrationAmounts: registrants,
+            lastEdited: Date.now(),
+          }
+        );
+      }
+
+      let registrant = registrationAmounts.filter(
+        (registrant) => registrant.id === message.author.id
+      )[0];
 
       var registeredEmbed = new Discord.MessageEmbed()
         .setAuthor("Kayıt başarıyla yapıldı", client.user.displayAvatarURL())
@@ -311,7 +385,11 @@ module.exports = {
           },
           {
             name: "Kaydı Yapan Yetkili:",
-            value: message.author,
+            value:
+              `<@${message.author.id}>` +
+              "\n`" +
+              `${registrant.count}` +
+              ". kayıt`",
             inline: true,
           },
           {
