@@ -45,7 +45,7 @@ module.exports = {
           {
             name: "Hesap güvenilirliği:",
             value:
-              Date.now() - member.user.createdAt < 15
+              Date.now() - member.user.createdAt < 1000 * 60 * 60 * 24 * 15
                 ? "`Şüpheli! (Hesap sadece" +
                   Date.now() -
                   member.user.createdAt +
