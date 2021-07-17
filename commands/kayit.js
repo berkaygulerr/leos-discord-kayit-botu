@@ -217,7 +217,9 @@ module.exports = {
         );
       }
 
-      let registrant = registrationAmounts.filter(
+      let lastGuildProfile = await Guild.findOne({ guildID: message.guild.id });
+
+      let registrant = lastGuildProfile.registrationAmounts.filter(
         (registrant) => registrant.id === message.author.id
       )[0];
 
@@ -367,7 +369,9 @@ module.exports = {
         );
       }
 
-      let registrant = registrationAmounts.filter(
+      let lastGuildProfile = await Guild.findOne({ guildID: message.guild.id });
+
+      let registrant = lastGuildProfile.registrationAmounts.filter(
         (registrant) => registrant.id === message.author.id
       )[0];
 
