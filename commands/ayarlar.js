@@ -52,9 +52,10 @@ module.exports = {
         return (field =
           `<@&${
             settings.role ? settings.role : guildProfile.memberRoleID
-          }>\nID: ${
-            settings.role ? settings.role : guildProfile.memberRoleID
-          }` +
+          }>\nID: ` +
+          "`" +
+          `${settings.role ? settings.role : guildProfile.memberRoleID}` +
+          "`" +
           "\nFarklı bir kayıtsız üye rolü ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -76,9 +77,10 @@ module.exports = {
         return (field =
           `<@&${
             settings.role ? settings.role : guildProfile.registeredRoleID
-          }>\nID: ${
-            settings.role ? settings.role : guildProfile.registeredRoleID
-          }` +
+          }>\nID: ` +
+          "`" +
+          `${settings.role ? settings.role : guildProfile.registeredRoleID}` +
+          "`" +
           "\nFarklı bir kayıtlı üye rolü ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -116,9 +118,12 @@ module.exports = {
       // erkek role field
       else if (settings.name === settingArgs.erkek_rol && !settings.isNull)
         return (field =
-          `<@&${settings.role ? settings.role : guildProfile.boyRoleID}>\nID: ${
+          `<@&${
             settings.role ? settings.role : guildProfile.boyRoleID
-          }` +
+          }>\nID: ` +
+          "`" +
+          `${settings.role ? settings.role : guildProfile.boyRoleID}` +
+          "`" +
           "\nFarklı bir erkek üye rolü ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -140,7 +145,10 @@ module.exports = {
         return (field =
           `<@&${
             settings.role ? settings.role : guildProfile.girlRoleID
-          }>\nID: ${settings.role ? settings.role : guildProfile.girlRoleID}` +
+          }>\nID: ` +
+          "`" +
+          `${settings.role ? settings.role : guildProfile.girlRoleID}` +
+          "`" +
           "\nFarklı bir erkek üye rolü ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -162,9 +170,12 @@ module.exports = {
         return (field =
           `<#${
             settings.channel ? settings.channel : guildProfile.registerChannelID
-          }>\nID: ${
+          }>\nID: ` +
+          "`" +
+          `${
             settings.channel ? settings.channel : guildProfile.registerChannelID
           }` +
+          "`" +
           "\nFarklı bir kayıt bildirim kanalı ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -186,9 +197,12 @@ module.exports = {
         return (field =
           `<#${
             settings.channel ? settings.channel : guildProfile.welcomeChannelID
-          }>\nID: ${
+          }>\nID: ` +
+          "`" +
+          `${
             settings.channel ? settings.channel : guildProfile.welcomeChannelID
           }` +
+          "`" +
           "\nFarklı bir yeni üye bildirim kanalı ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -209,7 +223,10 @@ module.exports = {
       else if (settings.name === settingArgs.ayarlar_yetki && !settings.isNull)
         return (field =
           settings.role +
-          `\nID: ${settings.ids}` +
+          `\nID: ` +
+          "`" +
+          `${settings.ids}` +
+          "`" +
           "\nAyarlar komutunu kullanabilecek farklı rolleri ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -230,7 +247,10 @@ module.exports = {
       else if (settings.name === settingArgs.kayit_yetki && !settings.isNull)
         return (field =
           settings.role +
-          `\nID: ${settings.ids}` +
+          `\nID: ` +
+          "`" +
+          `${settings.ids}` +
+          "`" +
           "\nKayıt edebilecek farklı yetkili rollerini ayarlamak için:\n" +
           "`" +
           `${guildProfile.prefix}` +
@@ -278,7 +298,7 @@ module.exports = {
     });
 
     const settingsRoles = settingsRoleMentions.join(", ");
-    const settIds = guildProfile.settingsRoleIDs.join(", ");
+    const settIds = guildProfile.settingsRoleIDs.join("`, `");
 
     const registerRoleMentions = [];
 
@@ -287,7 +307,7 @@ module.exports = {
     });
 
     const registerRoles = registerRoleMentions.join(", ");
-    const regIds = guildProfile.registerRoleIDs.join(", ");
+    const regIds = guildProfile.registerRoleIDs.join("`, `");
 
     if (!args.length) {
       let embed = new Discord.MessageEmbed()
@@ -786,7 +806,7 @@ module.exports = {
         roleMentions.push(`<@&${role.id}>`);
       });
 
-      var ids = roleIDs.join(", ");
+      var ids = roleIDs.join("`, `");
       const roles = roleMentions.join(", ");
 
       await Guild.findOneAndUpdate(
@@ -823,7 +843,7 @@ module.exports = {
         roleMentions.push(`<@&${role.id}>`);
       });
 
-      var ids = roleIDs.join(", ");
+      var ids = roleIDs.join("`, `");
       const roles = roleMentions.join(", ");
 
       await Guild.findOneAndUpdate(

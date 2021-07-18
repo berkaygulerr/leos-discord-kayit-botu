@@ -42,7 +42,7 @@ module.exports = {
               `${date.toLocaleString("tr-TR")}` +
               "`",
           },
-          { name: "ID:", value: member.user.id },
+          { name: "ID:", value: "`" + member.user.id + "`" },
           {
             name: "Hesap güvenilirliği:",
             value:
