@@ -60,15 +60,22 @@ module.exports = {
         message.mentions.members.first() ||
         message.guild.members.cache.get(args[0]);
 
-      let registrant = registrationAmounts.filter(
-        (registrant) => registrant.id === mentionMember.id
-      )[0];
+      if (!mentionMember) {
+        return message.channel.send("Geçerli bir kullanıcı belirtmediniz!");
+      }
 
-      if (!registrant) {
+      let hasRegistrant = registrationAmounts.some(
+        (registrant) => registrant.id === mentionMember.id
+      );
+
+      if (!hasRegistrant)
         return message.channel.send(
           "Belirttiğiniz kullanıcının kayıt sayısı bulunmamaktadır!"
         );
-      }
+
+      let registrant = registrationAmounts.filter(
+        (registrant) => registrant.id === mentionMember.id
+      )[0];
 
       let order = registrationAmounts.indexOf(registrant) + 1;
 
