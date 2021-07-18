@@ -281,9 +281,12 @@ module.exports = {
       newArgs.splice(0, 1);
       var memberName = newArgs.join(" ");
 
+      // replace last space character
       if (guildProfile.registerSymbole) {
-        memberName = memberName.split(" ");
-        memberName = memberName.join(` ${guildProfile.registerSymbole} `);
+        memberName = memberName.replace(
+          / ([^ ]*)$/,
+          ` ${guildProfile.registerSymbole} ` + `$1`
+        );
       }
 
       let embed = new Discord.MessageEmbed()
