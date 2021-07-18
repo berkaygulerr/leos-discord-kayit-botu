@@ -60,6 +60,12 @@ module.exports = {
         message.mentions.members.first() ||
         message.guild.members.cache.get(args[0]);
 
+      if (!mentionMember) {
+        return message.channel.send(
+          "Belirttiğiniz kullanıcının kayıt sayısı bulunmamaktadır!"
+        );
+      }
+
       let registrant = registrationAmounts.filter(
         (registrant) => registrant.id === mentionMember.id
       )[0];
