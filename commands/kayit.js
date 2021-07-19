@@ -4,7 +4,14 @@ const Discord = require("discord.js");
 module.exports = {
   name: "kayit",
   aliases: ["kayıt"],
-  description: "Yeni gelen üyeleri kayıt eder.",
+  description: "Yeni gelen üyeleri kayıt etmeyi sağlar.",
+  usage(guildProfile) {
+    return (
+      "`" +
+      `${guildProfile.prefix}kayit @kullanıcı isim yaş\n${guildProfile.prefix}kayit cinsiyet(erkek, kız) @kullanıcı isim yaş` +
+      "`"
+    );
+  },
   async execute(message, args, client) {
     const settingArgs = {
       prefix: "prefix",
@@ -190,7 +197,7 @@ module.exports = {
 
       var registrationAmounts = await guildProfile.registrationAmounts;
 
-      var hasRegistrant = registrationAmounts.some(
+      var hasRegistrant = await registrationAmounts.some(
         (registrant) => registrant.id === message.author.id
       );
 
@@ -207,7 +214,7 @@ module.exports = {
       } else {
         let registrants = [...registrationAmounts];
 
-        registrants.map((registrant) =>
+        await registrants.map((registrant) =>
           registrant.id === message.author.id ? (registrant.count += 1) : null
         );
 
@@ -222,7 +229,7 @@ module.exports = {
 
       let lastGuildProfile = await Guild.findOne({ guildID: message.guild.id });
 
-      let registrant = lastGuildProfile.registrationAmounts.filter(
+      let registrant = await lastGuildProfile.registrationAmounts.filter(
         (registrant) => registrant.id === message.author.id
       )[0];
 
@@ -345,7 +352,7 @@ module.exports = {
 
       var registrationAmounts = await guildProfile.registrationAmounts;
 
-      var hasRegistrant = registrationAmounts.some(
+      var hasRegistrant = await registrationAmounts.some(
         (registrant) => registrant.id === message.author.id
       );
 
@@ -362,7 +369,7 @@ module.exports = {
       } else {
         let registrants = [...registrationAmounts];
 
-        registrants.map((registrant) =>
+        await registrants.map((registrant) =>
           registrant.id === message.author.id ? (registrant.count += 1) : null
         );
 
@@ -377,7 +384,7 @@ module.exports = {
 
       let lastGuildProfile = await Guild.findOne({ guildID: message.guild.id });
 
-      let registrant = lastGuildProfile.registrationAmounts.filter(
+      let registrant = await lastGuildProfile.registrationAmounts.filter(
         (registrant) => registrant.id === message.author.id
       )[0];
 
