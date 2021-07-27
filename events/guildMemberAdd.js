@@ -31,7 +31,7 @@ module.exports = {
         )
         .setThumbnail(member.user.displayAvatarURL())
         .setDescription(
-          `<@${member.user.id}> Hoş geldin, seninle birlikte artık ${member.guild.memberCount} kişiyiz!`
+          `<@!${member.user.id}> Hoş geldin, seninle birlikte artık ${member.guild.memberCount} kişiyiz!`
         )
         .addFields(
           {
@@ -47,7 +47,7 @@ module.exports = {
             name: "Hesap güvenilirliği:",
             value:
               Date.now() - member.user.createdAt < 1000 * 60 * 60 * 24 * 15
-                ? "`Şüpheli! (Hesap sadece" +
+                ? "`Şüpheli! (Hesap sadece " +
                   (Date.now() - member.user.createdAt) / 1000 / 60 / 60 / 24 +
                   " gün önce açılmış!)`"
                 : "`Güvenilir!`",
@@ -79,6 +79,7 @@ module.exports = {
         roles = `<@&${role}>`;
       }
 
+      welcomeChannel.send(`> <@!${member.user.id}> Hoşgeldin :partying_face:`);
       welcomeChannel.send(roles);
       welcomeChannel.send(embed);
     }
