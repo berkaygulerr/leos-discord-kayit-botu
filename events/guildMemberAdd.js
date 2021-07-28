@@ -31,7 +31,7 @@ module.exports = {
         )
         .setThumbnail(member.user.displayAvatarURL())
         .setDescription(
-          `<@!${member.user.id}> Hoş geldin, seninle birlikte artık ${member.guild.memberCount} kişiyiz!`
+          `<@!${member.user.id}> Hoş geldin, seninle birlikte artık **${member.guild.memberCount}** kişiyiz!`
         )
         .addFields(
           {
