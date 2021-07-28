@@ -39,7 +39,7 @@ module.exports = {
       var i,
         j,
         temporary,
-        chunk = 10;
+        chunk = 5;
       for (i = 0, j = registrationAmounts.length; i < j; i += chunk) {
         temporary = registrationAmounts.slice(i, i + chunk);
         await registrantBySlice.push(temporary);
