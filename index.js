@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
+const disbut = require("discord-buttons");
 const client = new Discord.Client();
+disbut(client);
 const mongoose = require("./database/mongoose");
 const fs = require("fs");
 require("dotenv").config();
