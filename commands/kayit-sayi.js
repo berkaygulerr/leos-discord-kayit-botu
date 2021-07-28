@@ -80,7 +80,7 @@ module.exports = {
           pages,
           100000,
           disbut,
-          "green",
+          "blurple",
           "⏩",
           "⏪",
           "❌"
