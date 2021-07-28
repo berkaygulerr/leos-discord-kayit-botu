@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "discord-buttons": "^4.0.0",
+    "discord-embeds-pages-buttons": "^1.1.10",
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
     "mongoose": "^5.13.0"
