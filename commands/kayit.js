@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 
 module.exports = {
   name: "kayit",
-  aliases: ["kayıt"],
+  aliases: ["kayıt", "k"],
   description: "Yeni gelen üyeleri kayıt etmeyi sağlar.",
   usage(guildProfile) {
     return (
@@ -287,6 +287,8 @@ module.exports = {
 
       message.channel.send(embed);
     } else {
+      if (args[0] !== message.mentions.users.first()) return;
+
       var newArgs = [...args];
       newArgs.splice(0, 1);
       var memberName = newArgs.join(" ");

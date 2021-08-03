@@ -5,7 +5,7 @@ const disbutpages = require("discord-embeds-pages-buttons");
 
 module.exports = {
   name: "kayit-sayi",
-  aliases: ["kayıt-sayı"],
+  aliases: ["kayıt-sayı", "ks"],
   usage(guildProfile) {
     return (
       "`" +
