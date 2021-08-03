@@ -287,7 +287,6 @@ module.exports = {
 
       message.channel.send(embed);
     } else {
-      if (args[0] !== message.mentions.users.first()) return;
 
       var newArgs = [...args];
       newArgs.splice(0, 1);
