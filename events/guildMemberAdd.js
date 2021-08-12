@@ -24,6 +24,9 @@ module.exports = {
 
     if (guildProfile.welcomeChannelID) {
       let date = member.user.createdAt;
+      let daySubtract = parseInt(
+        (Date.now() - member.user.createdAt) / 1000 / 60 / 60 / 24
+      );
 
       var embed = new Discord.MessageEmbed()
         .setTitle(
@@ -48,7 +51,7 @@ module.exports = {
             value:
               Date.now() - member.user.createdAt < 1000 * 60 * 60 * 24 * 15
                 ? "`Şüpheli! (Hesap sadece " +
-                  (Date.now() - member.user.createdAt) / 1000 / 60 / 60 / 24 +
+                  daySubtract +
                   " gün önce açılmış!)`"
                 : "`Güvenilir!`",
           }
@@ -79,7 +82,7 @@ module.exports = {
         roles = `<@&${role}>`;
       }
 
-      welcomeChannel.send(`> <@!${member.user.id}> Hoşgeldin :partying_face:`);
+      welcomeChannel.send(`> <@!${member.user.id}> Hoş geldin :partying_face:`);
       welcomeChannel.send(roles);
       welcomeChannel.send(embed);
     }
