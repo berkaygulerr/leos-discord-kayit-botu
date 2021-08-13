@@ -7,6 +7,7 @@ const guildSchema = new mongoose.Schema({
   prefix: { type: String, default: "!" },
   settingsRoleIDs: { type: Array, required: false },
   registerRoleIDs: { type: Array, required: false },
+  registerTagRoleIDs: { type: Array, required: false },
   memberRoleID: { type: String, required: false },
   registeredRoleID: { type: String, required: false },
   registerChannelID: { type: String, required: false },

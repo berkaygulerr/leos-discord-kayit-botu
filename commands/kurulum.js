@@ -3,11 +3,12 @@ const Discord = require("discord.js");
 module.exports = {
   name: "kurulum",
   description: "Botun servera kurulmasını sağlar.",
+  usage(guildProfile) {
+    return "`" + `${guildProfile.prefix}kurulum` + "`";
+  },
   async execute(message, args, client) {
     if (message.author.id !== message.guild.ownerID)
-      return message.channel.send(
-        "Kurulumu sadece sunucu sahibi yapabilir!"
-      );
+      return message.channel.send("Kurulumu sadece sunucu sahibi yapabilir!");
 
     let embed = new Discord.MessageEmbed()
       .setTitle(

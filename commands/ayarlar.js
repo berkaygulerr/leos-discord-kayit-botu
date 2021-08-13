@@ -4,12 +4,13 @@ const Discord = require("discord.js");
 module.exports = {
   name: "ayarlar",
   description:
-    "Sunucu sahibinin sunucuya özel belirli ayarları yapabilmesini sağlar.",
+    "Sunucu sahibinin ve kurulum aşamasında belirlenen rollere sahip yetkililerin sunucuya özel, belirli ayarları yapabilmesini sağlar.",
   async execute(message, args, client) {
     const settingArgs = {
       prefix: "prefix",
       ayarlar_yetki: "ayarlar-yetki",
       kayit_yetki: "kayit-yetki",
+      kayit_etiket: "kayit-etiket",
       kayitsiz_rol: "kayitsiz-rol",
       kayitli_rol: "kayitli-rol",
       kayit_sembol: "kayit-sembol",
@@ -289,6 +290,30 @@ module.exports = {
           "ayarlar " +
           settingArgs.kayit_sembol +
           " yeni sembol`");
+      // kayit etiket field
+      else if (settings.name === settingArgs.kayit_etiket && !settings.isNull)
+        return (field =
+          settings.role +
+          `\nID: ` +
+          "`" +
+          `${settings.ids}` +
+          "`" +
+          "\nSunucuya yeni üye geldiğinde etiketlenecek rolleri ayarlamak için:\n" +
+          "`" +
+          `${guildProfile.prefix}` +
+          "ayarlar " +
+          settingArgs.kayit_etiket +
+          " @yeni rol ve roller`");
+      // kayit etiket field (null)
+      else if (settings.name === settingArgs.kayit_etiket && settings.isNull)
+        return (field =
+          "*Ayarlanmadı*" +
+          "\nSunucuya yeni üye geldiğinde etiketlenecek rolleri ayarlamak için:\n" +
+          "`" +
+          `${guildProfile.prefix}` +
+          "ayarlar " +
+          settingArgs.kayit_etiket +
+          " @rol veya roller`");
     };
 
     const settingsRoleMentions = [];
@@ -300,6 +325,8 @@ module.exports = {
     const settingsRoles = settingsRoleMentions.join(", ");
     const settIds = guildProfile.settingsRoleIDs.join("`, `");
 
+    // ------------------------
+
     const registerRoleMentions = [];
 
     await guildProfile.registerRoleIDs.map((roleID) => {
@@ -308,6 +335,17 @@ module.exports = {
 
     const registerRoles = registerRoleMentions.join(", ");
     const regIds = guildProfile.registerRoleIDs.join("`, `");
+
+    // ------------------------
+
+    const registerTagRoleMentions = [];
+
+    await guildProfile.registerTagRoleIDs.map((roleID) => {
+      registerTagRoleMentions.push(`<@&${roleID}>`);
+    });
+
+    const registerTagRoles = registerTagRoleMentions.join(", ");
+    const regTagIds = guildProfile.registerTagRoleIDs.join("`, `");
 
     if (!args.length) {
       let embed = new Discord.MessageEmbed()
@@ -354,6 +392,24 @@ module.exports = {
         embed.addField(
           "Kayıt Edebilecek Yetkili Roller: ",
           fields({ name: settingArgs.kayit_yetki, isNull: true }),
+          false
+        );
+      }
+
+      if (registerTagRoles != "") {
+        embed.addField(
+          "Yeni Üye Geldiğinde Etiketlenecek Roller: ",
+          fields({
+            name: settingArgs.kayit_etiket,
+            role: registerTagRoles,
+            ids: regTagIds,
+          }),
+          false
+        );
+      } else {
+        embed.addField(
+          "Yeni Üye Geldiğinde Etiketlenecek Roller: ",
+          fields({ name: settingArgs.kayit_etiket, isNull: true }),
           false
         );
       }
@@ -895,10 +951,51 @@ module.exports = {
         );
 
       message.channel.send(embed);
-    } else if (args[0] === settingArgs.reset) {
-      await Guild.findOneAndDelete({ guildID: message.guild.id });
+    } else if (args[0] === settingArgs.kayit_etiket) {
+      const roleIDs = [];
+      const roleMentions = [];
 
-      message.channel.send("Tüm ayarlar başarıyla sıfırlandı!");
+      await message.mentions.roles.map((role) => {
+        roleIDs.push(role.id);
+        roleMentions.push(`<@&${role.id}>`);
+      });
+
+      var ids = roleIDs.join("`, `");
+      const roles = roleMentions.join(", ");
+
+      await Guild.findOneAndUpdate(
+        { guildID: message.guild.id },
+        { registerTagRoleIDs: roleIDs, lastEdited: Date.now() }
+      );
+
+      let title = `Kayıt Edebilecek Yetkili Rolleri Başarıyla Değiştirildi`;
+
+      let embed = new Discord.MessageEmbed()
+        .setTitle(title)
+        .setDescription(
+          `Artık sunucuya yeni üye geldiğinde ${roles} rolleri etiketlenecektir.`
+        )
+        .setThumbnail(client.user.displayAvatarURL())
+        .setColor("BLUE")
+        .addField(
+          "Yeni Üye Geldiğinde Etiketlenecek Roller: ",
+          fields({
+            name: settingArgs.kayit_etiket,
+            role: roles,
+            ids: ids,
+          }),
+          true
+        );
+
+      message.channel.send(embed);
+    } else if (args[0] === settingArgs.reset) {
+      // await Guild.findOneAndDelete({ guildID: message.guild.id });
+
+      // message.channel.send("Tüm ayarlar başarıyla sıfırlandı!");
+
+      message.channel.send(
+        "Teknik bir sıkıntıdan dolayı bu komut askıya alınmıştır."
+      );
     }
   },
 };

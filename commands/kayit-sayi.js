@@ -86,7 +86,11 @@ module.exports = {
           "❌"
         );
       } else {
-        message.channel.send(pages[0]);
+        message.channel.send(pages[0]).catch((e) => {
+          message.channel.send(
+            "Sunucuda herhangi bir kayıt sayısı bulunmamaktadır."
+          );
+        });
       }
     } else {
       var mentionMember =

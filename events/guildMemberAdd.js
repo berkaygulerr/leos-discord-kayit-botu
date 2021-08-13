@@ -2,8 +2,6 @@ const Guild = require("../database/models/guildSchema");
 const Discord = require("discord.js");
 
 const setMemberRole = async (member, guildProfile) => {
-  if (member.user.bot) return;
-
   let role = await member.guild.roles.cache.get(guildProfile.memberRoleID);
   if (role)
     member.roles.add(role).catch((x) => {
@@ -16,7 +14,7 @@ const setMemberRole = async (member, guildProfile) => {
 module.exports = {
   name: "guildMemberAdd",
   async execute(member, client) {
-    if (member.user.bot) return;
+    //if (member.user.bot) return;
 
     var guildProfile = await Guild.findOne({ guildID: member.guild.id });
 
@@ -68,18 +66,34 @@ module.exports = {
       var roleMentions = [];
       var roles = "";
 
-      if (guildProfile.registerRoleIDs.length > 1) {
-        guildProfile.registerRoleIDs.map((role) => {
+      if (guildProfile.registerTagRoleIDs.length) {
+        if (guildProfile.registerTagRoleIDs.length > 1) {
+          guildProfile.registerTagRoleIDs.map((role) => {
+            roleIDs.push(role);
+            roleMentions.push(`<@&${role}>`);
+          });
+
+          roles = roleMentions.join(" ");
+        } else {
+          let role = guildProfile.registerTagRoleIDs;
+
           roleIDs.push(role);
-          roleMentions.push(`<@&${role}>`);
-        });
-
-        roles = roleMentions.join(" ");
+          roles = `<@&${role}>`;
+        }
       } else {
-        let role = guildProfile.registerRoleIDs;
+        if (guildProfile.registerRoleIDs.length > 1) {
+          guildProfile.registerRoleIDs.map((role) => {
+            roleIDs.push(role);
+            roleMentions.push(`<@&${role}>`);
+          });
 
-        roleIDs.push(role);
-        roles = `<@&${role}>`;
+          roles = roleMentions.join(" ");
+        } else {
+          let role = guildProfile.registerRoleIDs;
+
+          roleIDs.push(role);
+          roles = `<@&${role}>`;
+        }
       }
 
       welcomeChannel.send(`> <@!${member.user.id}> Hoş geldin :partying_face:`);
