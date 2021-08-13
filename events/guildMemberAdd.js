@@ -29,7 +29,7 @@ module.exports = {
       var accountTimeText;
 
       if (daySubtract === 0) {
-        accountTimeText = "Şüpheli! (Hesap daha bugün açılmış!)";
+        accountTimeText = "`Şüpheli! (Hesap daha bugün açılmış!)`";
       } else {
         accountTimeText =
           "`Şüpheli! (Hesap sadece " + daySubtract + " gün önce açılmış!)`";
