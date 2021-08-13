@@ -968,7 +968,7 @@ module.exports = {
         { registerTagRoleIDs: roleIDs, lastEdited: Date.now() }
       );
 
-      let title = `Kayıt Edebilecek Yetkili Rolleri Başarıyla Değiştirildi`;
+      let title = `Yeni Üye Geldiğinde Etiketlenecek Roller Başarıyla Değiştirildi`;
 
       let embed = new Discord.MessageEmbed()
         .setTitle(title)
