@@ -96,8 +96,7 @@ module.exports = {
         }
       }
 
-      welcomeChannel.send(roles);
-      welcomeChannel.send(`> <@!${member.user.id}> Hoş geldin :partying_face:`);
+      welcomeChannel.send(roles + `\n> <@!${member.user.id}> Hoş geldin :partying_face:`);
       welcomeChannel.send(embed);
     }
   },
