@@ -26,6 +26,15 @@ module.exports = {
         (Date.now() - member.user.createdAt) / 1000 / 60 / 60 / 24
       );
 
+      var accountTimeText;
+
+      if (daySubtract === 0) {
+        accountTimeText = "Şüpheli! (Hesap daha bugün açılmış!)";
+      } else {
+        accountTimeText =
+          "`Şüpheli! (Hesap sadece " + daySubtract + " gün önce açılmış!)`";
+      }
+
       var embed = new Discord.MessageEmbed()
         .setTitle(
           `${member.user.username} Aramıza Hoş Geldin, Seni Burada Görmek Ne Güzel :partying_face:`
@@ -48,9 +57,7 @@ module.exports = {
             name: "Hesap güvenilirliği:",
             value:
               Date.now() - member.user.createdAt < 1000 * 60 * 60 * 24 * 15
-                ? "`Şüpheli! (Hesap sadece " +
-                  daySubtract +
-                  " gün önce açılmış!)`"
+                ? accountTimeText
                 : "`Güvenilir!`",
           }
         )
@@ -96,7 +103,9 @@ module.exports = {
         }
       }
 
-      welcomeChannel.send(roles + `\n> <@!${member.user.id}> Hoş geldin :partying_face:`);
+      welcomeChannel.send(
+        roles + `\n> <@!${member.user.id}> Hoş geldin :partying_face:`
+      );
       welcomeChannel.send(embed);
     }
   },
