@@ -14,7 +14,7 @@ const setMemberRole = async (member, guildProfile) => {
 module.exports = {
   name: "guildMemberAdd",
   async execute(member, client) {
-    //if (member.user.bot) return;
+    if (member.user.bot) return;
 
     var guildProfile = await Guild.findOne({ guildID: member.guild.id });
 
