@@ -6,6 +6,7 @@ var states = {
   prefix: "prefix",
   ayarlar_yetki: "ayarlar-yetki",
   kayit_yetki: "kayit-yetki",
+  kayit_etiket: "kayit-etiket",
   kayitsiz_rol: "kayitsiz-rol",
   kayitli_rol: "kayitli-rol",
   kayit_sembol: "kayit-sembol",
@@ -149,8 +150,35 @@ module.exports = {
           )
           .setThumbnail(client.user.displayAvatarURL())
           .addField(
-            "Bir Kullanıcı Kayıt Edilirken İsim Ve Yaş Arasına Otomatik Gelmesini İstediğiniz Sembolu Yazınız. İstemiyorsanız h Veya hayır Yazınız.",
-            "örn: |\n\nKurulumu iptal etmek için **iptal** yazınız."
+            "Sunucuya Yeni Bir Üye Katıldığında Etiketlenmesini İstediğiniz Rolleri Etiketleyiniz.",
+            "örn: @kayitsorumlusu\n\nKurulumu iptal etmek için **iptal** yazınız."
+          )
+          .setColor("BLUE");
+
+        setupState = states.kayit_etiket;
+
+        return message.channel.send(embed);
+      } else if (
+        setupState === states.kayit_etiket &&
+        roles != "" &&
+        message.author.id === kurulumAuthor
+      ) {
+        await Guild.findOneAndUpdate(
+          { guildID: message.guild.id },
+          { registerTagRoleIDs: roleIDs, lastEdited: Date.now() }
+        );
+
+        let embed = new Discord.MessageEmbed()
+          .setTitle(
+            "Yeni Üye Geldiğinde Etiketlenecek Roller Başarıyla Ayarlandı"
+          )
+          .setDescription(
+            `Artık yeni üye geldiğinde ${roles} rolleri etiketlenecek.\n\n**Sıradaki Aşama:**`
+          )
+          .setThumbnail(client.user.displayAvatarURL())
+          .addField(
+            "Bir Kullanıcyı Kayıt Ederken İsim Yaş Arasına Eklenecek Sembolü Yazınız.",
+            "örn: | (Yoksaymak için **hayır** veya **h** yazınız.)\n\nKurulumu iptal etmek için **iptal** yazınız."
           )
           .setColor("BLUE");
 
