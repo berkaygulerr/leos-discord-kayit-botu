@@ -435,7 +435,7 @@ module.exports = {
         );
 
         let embed = new Discord.MessageEmbed()
-          .setTitle("Erkek Üye Rolü Başarıyla Ayarlandı")
+          .setTitle("Kız Üye Rolü Başarıyla Ayarlandı")
           .setDescription(
             `Artık bir kullanıcı kız olarak kayıt edildiğinde <@&${role.id}> rolü verilecek.\n\n**Kurulum Aşaması Başarıyla tamamlanmıştır.**`
           )
