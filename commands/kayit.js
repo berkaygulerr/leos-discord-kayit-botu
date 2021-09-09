@@ -264,6 +264,8 @@ module.exports = {
         .setFooter(client.user.username, client.user.displayAvatarURL())
         .setColor("BLUE");
 
+      message.react("✅");
+      
       if (!registerChannel) return message.channel.send(registeredEmbed);
 
       return registerChannel.send(registeredEmbed);
@@ -287,7 +289,6 @@ module.exports = {
 
       message.channel.send(embed);
     } else {
-
       var newArgs = [...args];
       newArgs.splice(0, 1);
       var memberName = newArgs.join(" ");
@@ -420,9 +421,11 @@ module.exports = {
         .setFooter(client.user.username, client.user.displayAvatarURL())
         .setColor("BLUE");
 
+      message.react("✅");
+
       if (!registerChannel) return message.channel.send(registeredEmbed);
 
-      registerChannel.send(registeredEmbed);
+      return registerChannel.send(registeredEmbed);
     }
   },
 };
