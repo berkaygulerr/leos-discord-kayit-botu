@@ -79,6 +79,7 @@ module.exports = {
     const registeredMemberRoles = [];
 
     var gendersCommands = ["erkek", "e", "kız", "kiz", "k"];
+    var juniorArg = ["-j", "-jr"];
 
     if (guildProfile.genderRole && gendersCommands.includes(args[0])) {
       var newArgs = [...args];
@@ -265,7 +266,7 @@ module.exports = {
         .setColor("BLUE");
 
       message.react("✅");
-      
+
       if (!registerChannel) return message.channel.send(registeredEmbed);
 
       return registerChannel.send(registeredEmbed);
@@ -334,13 +335,37 @@ module.exports = {
         return message.channel.send(embed);
       }
 
-      await registeredMember.roles.add(registeredRole).catch((x) => {
-        if (x.message.includes("Missing")) {
-          return message.reply(
-            "Botun yetkisi kayıtlı üye rolünü vermeye yetmiyor."
-          );
-        }
-      });
+      var jrRegisteredRole =
+        message.guild.roles.cache.get("906879142312706098");
+
+      var roles;
+
+      if (juniorArg.includes(args[args.length - 1])) {
+        await registeredMember.roles.add(jrRegisteredRole).catch((x) => {
+          if (x.message.includes("Missing")) {
+            return message.reply(
+              "Botun yetkisi kayıtlı üye rolünü vermeye yetmiyor."
+            );
+          }
+        });
+        memberName = args[1];
+
+        roles = `<@&${jrRegisteredRole.id}>`;
+
+        if (roles === "") return;
+      } else {
+        await registeredMember.roles.add(registeredRole).catch((x) => {
+          if (x.message.includes("Missing")) {
+            return message.reply(
+              "Botun yetkisi kayıtlı üye rolünü vermeye yetmiyor."
+            );
+          }
+        });
+        roles = `<@&${registeredRole.id}>`;
+
+        if (roles === "") return;
+      }
+
       await registeredMember.setNickname(memberName).catch((x) => {
         if (x.message.includes("Missing")) {
           return message.reply("Botun yetkisi isim değiştirmeye yetmiyor.");
@@ -348,9 +373,6 @@ module.exports = {
       });
 
       await registeredMember.roles.remove(guildProfile.memberRoleID);
-
-      let roles = `<@&${registeredRole.id}>`;
-      if (roles === "") return;
 
       var registrationAmounts = await guildProfile.registrationAmounts;
 
