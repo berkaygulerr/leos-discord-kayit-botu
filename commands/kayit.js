@@ -336,15 +336,15 @@ module.exports = {
       }
 
       var jrRegisteredRole =
-        message.guild.roles.cache.get("906879142312706098");
+        message.guild.roles.cache.get("892848661980127272");
 
       var roles;
 
-      if (juniorArg.includes(args[args.length - 1])) {
+      if (juniorArg.includes(args[args.length - 1]) || args[args.length - 1] < 13) {
         await registeredMember.roles.add(jrRegisteredRole).catch((x) => {
           if (x.message.includes("Missing")) {
             return message.reply(
-              "Botun yetkisi kayıtlı üye rolünü vermeye yetmiyor."
+              "Botun yetkisi jr. üye rolünü vermeye yetmiyor."
             );
           }
         });
