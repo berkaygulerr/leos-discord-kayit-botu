@@ -336,7 +336,7 @@ module.exports = {
       }
 
       var jrRegisteredRole =
-        message.guild.roles.cache.get("892848661980127272");
+        message.guild.roles.cache.get("906879142312706098");
 
       var roles;
 
