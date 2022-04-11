@@ -340,7 +340,10 @@ module.exports = {
 
       var roles;
 
-      if (juniorArg.includes(args[args.length - 1]) || args[args.length - 1] < 13) {
+      if (
+        juniorArg.includes(args[args.length - 1]) ||
+        args[args.length - 1] < 13
+      ) {
         await registeredMember.roles.add(jrRegisteredRole).catch((x) => {
           if (x.message.includes("Missing")) {
             return message.reply(
@@ -361,6 +364,11 @@ module.exports = {
             );
           }
         });
+
+        if (message.guild.id === "740320343322787880") {
+          memberName = args[1];
+        }
+
         roles = `<@&${registeredRole.id}>`;
 
         if (roles === "") return;
